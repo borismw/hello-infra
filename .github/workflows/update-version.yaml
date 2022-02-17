@@ -9,14 +9,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Change version
+      - name: Update version of Kubernetes Resource Mainfest
         working-directory: .
         run: 'sed -i "s+\\(image: ${{ github.event.client_payload.docker_repo }}:\\)[.0-9]*+\\1${1}${{ github.event.client_payload.new_version }}+" ./${{ github.event.client_payload.env }}/k8s/${{ github.event.client_payload.k8s_namespace }}/${{ github.event.client_payload.k8s_project }}/*.yaml'
-      - name: Print statement
-        run: 'echo "s+\\(image: ${{ github.event.client_payload.docker_repo }}:\\)[.0-9]*+\\1${1}${{ github.event.client_payload.new_version }}+"; echo "${{ github.event.client_payload.env }}/k8s/${{ github.event.client_payload.k8s_namespace }}/${{ github.event.client_payload.k8s_project }}/*.yaml"'
       - name: Add and Commit version change
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GH_TOKEN }}
-          commit-message: "Bump ${{ github.event.client_payload.docker_repo }}/${{ github.event.client_payload.k8s_project }} to version ${{ github.event.client_payload.new_version }}"
+          title: "Bump ${{ github.event.client_payload.docker_repo }} to version ${{ github.event.client_payload.new_version }} on ${{ github.event.client_payload.env }}"
+          commit-message: "Bump ${{ github.event.client_payload.docker_repo }} to version ${{ github.event.client_payload.new_version }} on ${{ github.event.client_payload.env }}"
+          branch: "${{ github.event.client_payload.env }}/${{ github.event.client_payload.k8s_project }}-to-${{ github.event.client_payload.new_version }}"
 
