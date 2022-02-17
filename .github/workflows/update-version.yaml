@@ -1,0 +1,26 @@
+name: update-version
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        required: true
+        description: 'Environment the resource to be updates is in. Such as production.'
+      k8s_namespace:
+        required: true
+        description: 'k8s namespace the resource to be updated lies in.'
+      k8s_project:
+        required: true
+        description: 'k8s project the resource to be updated lies in.'
+      docker_repo:
+        required: true
+        description: 'The docker repo to append the new tag for.'
+      new_version:
+        required: true
+        description: 'The new tag of the docker image to use.'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print all
+        run: echo "${{ github.event.inputs.new_version }} ${{ github.event.inputs.docker_repo }} ${{ github.event.inputs.k8s_project }} ${{ github.event.inputs.k8s_namespace }} ${{ github.event.inputs.env }}"
