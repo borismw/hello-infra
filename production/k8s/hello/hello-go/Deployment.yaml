@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: hello-go
+  labels:
+    app: hello-go
+spec:
+  replicas: 1
+  serviceName: hello-go
+  selector:
+    matchLabels:
+      app: hello-go
+  template:
+    metadata:
+      labels:
+        app: hello-go
+    spec:
+      containers:
+        - name: hello-go
+          image: awamob/hello-go:undefined
+          ports:
+            - containerPort: 8080
+          env:
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 1323
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 1323

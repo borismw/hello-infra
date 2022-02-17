@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-go
+  labels:
+    app: hello-go
+spec:
+  ports:
+    - name: ui-backend
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: hello-go

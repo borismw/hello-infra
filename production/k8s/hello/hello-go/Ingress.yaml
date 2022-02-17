@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: "nginx"
+  name: hello-go-ingress
+  namespace: hello
+spec:
+  rules:
+    - host: hello.ruzzelzuzzel.de
+      http:
+        paths:
+          - backend:
+              service:
+                name: hello-go
+                port:
+                  number: 80
+            path: /
+  tls:
+    - hosts:
+        - hello.ruzzelzuzzel.de
+      secretName: hello.ruzzelzuzzel.de-tls
