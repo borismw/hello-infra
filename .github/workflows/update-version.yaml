@@ -1,6 +1,7 @@
 name: update-version
 on:
-  workflow_dispatch:
+  repository_dispatch:
+    types: [update-version]
     inputs:
       env:
         required: true
