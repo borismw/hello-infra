@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Change version
-        run: 'sed -i "s+\\(image: ${{ github.event.client_payload.docker_repo }}/hello-go:\\)[.0-9]*+\\1${1}${{ github.event.client_payload.new_version }}+" ${{ github.event.client_payload.env }}/k8s/${{ github.event.client_payload.k8s_namespace }}/${{ github.client_payload.inputs.k8s_project }}/*.yaml'
+        run: 'sed -i "s+\\(image: ${{ github.event.client_payload.docker_repo }}/hello-go:\\)[.0-9]*+\\1${1}${{ github.event.client_payload.new_version }}+" ${{ github.event.client_payload.env }}/k8s/${{ github.event.client_payload.k8s_namespace }}/${{ github.event.client_payload.k8s_project }}/*.yaml'
       - name: Print statement
-        run: 'echo "s+\\(image: ${{ github.event.client_payload.docker_repo }}/hello-go:\\)[.0-9]*+\\1${1}${{ github.event.client_payload.new_version }}+"; echo "${{ github.event.client_payload.env }}/k8s/${{ github.event.client_payload.k8s_namespace }}/${{ github.client_payload.inputs.k8s_project }}/*.yaml"'
+        run: 'echo "s+\\(image: ${{ github.event.client_payload.docker_repo }}/hello-go:\\)[.0-9]*+\\1${1}${{ github.event.client_payload.new_version }}+"; echo "${{ github.event.client_payload.env }}/k8s/${{ github.event.client_payload.k8s_namespace }}/${{ github.event.client_payload.k8s_project }}/*.yaml"'
