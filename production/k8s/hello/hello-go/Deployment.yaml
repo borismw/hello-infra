@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hello-go
-          image: awamob/hello-go:0.13.0
+          image: awamob/hello-go:0.15.0
           ports:
             - containerPort: 8080
           env:
